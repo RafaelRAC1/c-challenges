@@ -1,2 +1,2 @@
 # c-challenges
-This repositiry is destinated to C challenges developed during college.
+This repository is dedicated to C challenges developed during college.
