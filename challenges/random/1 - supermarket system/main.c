@@ -3,7 +3,7 @@
 #include <string.h>
 #include <locale.h>
 
-struct Produto{
+struct Item{
     char marca[20];
     char produto[30];
     float preco;
@@ -14,18 +14,18 @@ struct Cliente{
     long long cpf;
     char nome[70];
     char sobrenome[30];
-    struct Produto carrinhoDeCompras[30];
+    struct Item carrinhoDeCompras[30];
     float total;
 };
 
 
-void imprimir(struct Produto produtos[], int tamanho, char c){
+void imprimir(struct Item itens[], int tamanho, char c){
     for(int i = 0; i < tamanho; i++){
         if(c == 's') printf("ITEM %i\n", i+1);
-        printf("Marca: %s", produtos[i].marca);
-        printf("\nProduto: %s", produtos[i].produto);
-        printf("\nPreço: R$ %.2f", produtos[i].preco);
-        printf("\nQuantidade: %i un.", produtos[i].quantidade);
+        printf("Marca: %s", itens[i].marca);
+        printf("\nProduto: %s", itens[i].produto);
+        printf("\nPreço: R$ %.2f", itens[i].preco);
+        printf("\nQuantidade: %i un.", itens[i].quantidade);
         printf("\n");
         if(i != tamanho-1){
             printf("\n");
@@ -33,47 +33,47 @@ void imprimir(struct Produto produtos[], int tamanho, char c){
     }
 }
 
-struct Produto* inserirProdutos(){
-    static struct Produto produtos[5];
-    int tamanho = sizeof(produtos) / sizeof(produtos[0]);
+struct Item* inseriritens(){
+    static struct Item itens[5];
+    int tamanho = sizeof(itens) / sizeof(itens[0]);
     
-    strcpy(produtos[0].marca, "Marca1");
-    strcpy(produtos[0].produto, "Produto1 100ml");
-    produtos[0].preco = 4.90;
-    produtos[0].quantidade = 4;
+    strcpy(itens[0].marca, "Marca1");
+    strcpy(itens[0].produto, "Produto1 100ml");
+    itens[0].preco = 4.90;
+    itens[0].quantidade = 4;
 
-    strcpy(produtos[1].marca, "Marca2");
-    strcpy(produtos[1].produto, "Produto2 200ml");
-    produtos[1].preco = 9.99;
-    produtos[1].quantidade = 2;
+    strcpy(itens[1].marca, "Marca2");
+    strcpy(itens[1].produto, "Produto2 200ml");
+    itens[1].preco = 9.99;
+    itens[1].quantidade = 2;
 
-    strcpy(produtos[2].marca, "Marca3");
-    strcpy(produtos[2].produto, "Produto3 500ml");
-    produtos[2].preco = 12.50;
-    produtos[2].quantidade = 3;
+    strcpy(itens[2].marca, "Marca3");
+    strcpy(itens[2].produto, "Produto3 500ml");
+    itens[2].preco = 12.50;
+    itens[2].quantidade = 3;
 
-    strcpy(produtos[3].marca, "Marca4");
-    strcpy(produtos[3].produto, "Produto4 1L");
-    produtos[3].preco = 19.99;
-    produtos[3].quantidade = 1;
+    strcpy(itens[3].marca, "Marca4");
+    strcpy(itens[3].produto, "Produto4 1L");
+    itens[3].preco = 19.99;
+    itens[3].quantidade = 1;
     
-    strcpy(produtos[4].marca, "Marca5");
-    strcpy(produtos[4].produto, "Produto5 1L");
-    produtos[4].preco = 29.99;
-    produtos[4].quantidade = 9;
+    strcpy(itens[4].marca, "Marca5");
+    strcpy(itens[4].produto, "Produto5 1L");
+    itens[4].preco = 29.99;
+    itens[4].quantidade = 9;
     
-    imprimir(produtos, tamanho, 's');
+    imprimir(itens, tamanho, 's');
     
-    return produtos;
+    return itens;
 }
 
-void imprimirCompra(struct Cliente cliente, struct Produto produtos[], int quantidade){
+void imprimirCompra(struct Cliente cliente, struct Item itens[], int quantidade){
     printf("-- DADOS DO CLIENTE --\n");
     printf("NOME: %s\n", cliente.nome);
     printf("SOBRENOME: %s\n", cliente.sobrenome);
     printf("CPF: %lld\n", cliente.cpf);
     printf("===== CARRINHO =====\n");
-    imprimir(produtos, quantidade, 'n');
+    imprimir(itens, quantidade, 'n');
     printf("==================\n");
     printf("TOTAL: R$ %.2f", cliente.total);
 }
@@ -115,22 +115,22 @@ int main(){
                     scanf("%i", &itensQtd);
                     printf("\n");
                     
-                    struct Produto produtos[itensQtd];
+                    struct Item itens[itensQtd];
                     getchar();
                     
                     for(i = 0; i < itensQtd; i++){
                        printf("ITEM %i\n", i+1);
                        printf("Digite a marca: ");
-                       fgets(produtos[i].marca, sizeof(produtos[i].marca), stdin);
+                       fgets(itens[i].marca, sizeof(itens[i].marca), stdin);
                        
                        printf("Digite o produto: ");
-                       fgets(produtos[i].produto, sizeof(produtos[i].produto), stdin);
+                       fgets(itens[i].produto, sizeof(itens[i].produto), stdin);
                        
                        printf("Digite o preço (un.): ");
-                       scanf("%f", &produtos[i].preco);
+                       scanf("%f", &itens[i].preco);
                        
                        printf("Digite a quantidade: ");
-                       scanf("%i", &produtos[i].quantidade);
+                       scanf("%i", &itens[i].quantidade);
                         
                        printf("\n");
                        getchar();
@@ -140,10 +140,10 @@ int main(){
                     printf("\n====== INTES ADICIONADOS ======\n");
                     for(i = 0; i < itensQtd; i++){
                         printf("ITEM %i", i+1);
-                        printf("\nMarca: %s", produtos[i].marca);
-                        printf("Produto: %s", produtos[i].produto);
-                        printf("Preço: R$ %.2f", produtos[i].preco);
-                        printf("\nQuantidade: %i un.", produtos[i].quantidade);
+                        printf("\nMarca: %s", itens[i].marca);
+                        printf("Item: %s", itens[i].produto);
+                        printf("Preço: R$ %.2f", itens[i].preco);
+                        printf("\nQuantidade: %i un.", itens[i].quantidade);
                         printf("\n\n");
                     }
                     
@@ -188,7 +188,7 @@ int main(){
             printf("VAMOS AS COMPRAS, %s!\n", nome);
             
             printf("\n--- ITENS DISPONÍVEIS ---\n");
-            struct Produto* produtosDisp = inserirProdutos();
+            struct Item* itensDisp = inseriritens();
             printf("-------------------------\n\n");
             
             do{
@@ -215,17 +215,17 @@ int main(){
                 do{
                     printf("Digite a QUANTIDADE (UN.) DESEJADA: ");
                     scanf("%i", &unidades);
-                    if(unidades > produtosDisp[numero-1].quantidade){
-                        printf("ERRO! A quantidade disponivel é: %i un.\n", produtosDisp[numero-1].quantidade);
+                    if(unidades > itensDisp[numero-1].quantidade){
+                        printf("ERRO! A quantidade disponivel é: %i un.\n", itensDisp[numero-1].quantidade);
                     }
-                }while(unidades > produtosDisp[numero-1].quantidade);
+                }while(unidades > itensDisp[numero-1].quantidade);
 
                 
-                strcpy(cliente.carrinhoDeCompras[i].marca, produtosDisp[numero-1].marca);
-                strcpy(cliente.carrinhoDeCompras[i].produto, produtosDisp[numero-1].produto);
-                cliente.carrinhoDeCompras[i].preco = produtosDisp[numero-1].preco;
+                strcpy(cliente.carrinhoDeCompras[i].marca, itensDisp[numero-1].marca);
+                strcpy(cliente.carrinhoDeCompras[i].produto, itensDisp[numero-1].produto);
+                cliente.carrinhoDeCompras[i].preco = itensDisp[numero-1].preco;
                 cliente.carrinhoDeCompras[i].quantidade = unidades;
-                cliente.total += (produtosDisp[numero-1].preco * unidades);
+                cliente.total += (itensDisp[numero-1].preco * unidades);
                 printf("\n");
             }
             
