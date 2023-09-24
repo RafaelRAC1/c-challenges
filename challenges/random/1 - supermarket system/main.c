@@ -83,7 +83,7 @@ int main(){
      
     char role[10];
 
-    printf("Seja bem-vindo ao Supermecado Braz Cubas!\n\n");
+    printf("Seja bem-vindo(a) ao Supermercado Braz Cubas!\n\n");
     printf("Você é cliente ou vendedor?\n");
 
     do{
@@ -165,7 +165,7 @@ int main(){
             
             system("clear");
             printf("==== PAINEL CLIENTE ====\n\n");
-            printf("Seja bem vindo(a)!\n\n");
+            printf("Seja bem-vindo(a)!\n\n");
             printf("Qual seu nome?\n-> ");
             scanf("%s", cliente.nome);
             fflush(stdin);
